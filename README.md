@@ -36,34 +36,6 @@ Real-time weather for all five New York City boroughs — built for SEO, LLM dis
 | The Bronx | /bronx |
 | Staten Island | /staten-island |
 
-## Setup
-
-### 1. Clone the repo
-
-git clone https://github.com/divinedavis/NYC-Weather-App.git
-cd NYC-Weather-App
-npm install
-
-### 2. Get an API key
-
-Sign up at openweathermap.org — free tier supports 60 calls/min.
-
-### 3. Configure environment
-
-cp .env.example .env.local
-# Edit .env.local and add your API key
-
-OPENWEATHER_API_KEY=your_key_here
-
-### 4. Run locally
-
-npm run dev
-
-### 5. Build for production
-
-npm run build
-npm start
-
 ## Server Deployment
 
 The app runs on a DigitalOcean droplet behind Nginx with PM2 for process management.
