@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { BOROUGHS, getWeather, windDirection, capitalize } from '@/lib/weather'
+import { getNeighborhoodsByBorough } from '@/lib/neighborhoods'
 import type { Metadata } from 'next'
 
 export const revalidate = 600
@@ -31,6 +32,7 @@ export default async function BoroughPage({ params }: { params: Promise<{ boroug
   if (!b) notFound()
 
   const w = await getWeather(b.lat, b.lon)
+  const neighborhoods = getNeighborhoodsByBorough(slug)
   const updated = new Date().toLocaleString('en-US', { timeZone: 'America/New_York', dateStyle: 'full', timeStyle: 'short' })
 
   const schemaOrg = {
@@ -56,7 +58,6 @@ export default async function BoroughPage({ params }: { params: Promise<{ boroug
         <Link href="/" className="text-blue-300 hover:text-white text-sm mb-8 inline-block transition">
           ← All NYC Boroughs
         </Link>
-
         <header className="text-center mb-10">
           <h1 className="text-4xl font-bold text-white mb-1">{b.name} Weather</h1>
           <p className="text-blue-300 text-sm">New York City · Updated {updated} ET</p>
@@ -64,7 +65,7 @@ export default async function BoroughPage({ params }: { params: Promise<{ boroug
 
         {!w ? (
           <div className="text-center text-blue-200 py-20">
-            <p>Weather data unavailable — add your OpenWeatherMap API key.</p>
+            <p>Weather data unavailable.</p>
           </div>
         ) : (
           <>
@@ -80,8 +81,7 @@ export default async function BoroughPage({ params }: { params: Promise<{ boroug
               <p className="text-2xl text-blue-200 capitalize mb-1">{capitalize(w.description)}</p>
               <p className="text-blue-300">Feels like {w.feels_like}°F · H {w.temp_max}° / L {w.temp_min}°</p>
             </div>
-
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4 mb-6">
               <div className="bg-white/10 backdrop-blur rounded-2xl p-5">
                 <p className="text-blue-300 text-sm mb-1">Humidity</p>
                 <p className="text-white text-3xl font-light">{w.humidity}%</p>
@@ -92,8 +92,7 @@ export default async function BoroughPage({ params }: { params: Promise<{ boroug
                 <p className="text-blue-300 text-sm">{windDirection(w.wind_deg)}</p>
               </div>
             </div>
-
-            <section className="mt-8 bg-white/5 rounded-2xl p-6 text-blue-200 text-sm leading-relaxed">
+            <section className="bg-white/5 rounded-2xl p-6 text-blue-200 text-sm leading-relaxed">
               <h2 className="text-white font-semibold mb-2">{b.name} Weather Summary</h2>
               <p>
                 {b.name} weather today is {w.temp}°F with {w.description}. The high will reach {w.temp_max}°F
@@ -102,6 +101,23 @@ export default async function BoroughPage({ params }: { params: Promise<{ boroug
               </p>
             </section>
           </>
+        )}
+
+        {neighborhoods.length > 0 && (
+          <section className="mt-10">
+            <h2 className="text-white font-semibold mb-4">{b.name} Neighborhoods</h2>
+            <div className="grid grid-cols-2 gap-2">
+              {neighborhoods.map((n) => (
+                <Link
+                  key={n.slug}
+                  href={`/${b.slug}/${n.slug}`}
+                  className="text-blue-200 hover:text-white text-sm px-4 py-2 bg-white/10 rounded-xl hover:bg-white/20 transition"
+                >
+                  {n.name} Weather →
+                </Link>
+              ))}
+            </div>
+          </section>
         )}
 
         <nav className="mt-10 text-center">
