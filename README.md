@@ -1,6 +1,6 @@
 # City Weather
 
-Real-time hyperlocal weather for neighborhoods in top cities worldwide — built for SEO, LLM discoverability, and fast performance.
+Real-time hyperlocal weather for neighborhoods in 16 major cities worldwide — built for SEO, LLM discoverability, and fast performance.
 
 ## Tech Stack
 
@@ -16,8 +16,10 @@ Real-time hyperlocal weather for neighborhoods in top cities worldwide — built
 
 ## Features
 
-- Real-time weather for neighborhoods in 6 major cities worldwide
+- Real-time weather for neighborhoods in 16 major cities worldwide
 - IP-based geolocation — nearest city surfaces first on the homepage
+- °F/°C toggle with localStorage persistence
+- /weather-near-me page for instant local weather
 - Incremental Static Regeneration — pages revalidate every 10 minutes
 - Schema.org structured data for Google rich snippets
 - llms.txt for LLM/AI crawler discoverability
@@ -36,11 +38,22 @@ Real-time hyperlocal weather for neighborhoods in top cities worldwide — built
 | Paris | /paris | /paris/[arrondissement] |
 | Dubai | /dubai | /dubai/[district] |
 | Sydney | /sydney | /sydney/[suburb] |
+| Los Angeles | /los-angeles | /los-angeles/[neighborhood] |
+| Chicago | /chicago | /chicago/[neighborhood] |
+| Miami | /miami | /miami/[neighborhood] |
+| Singapore | /singapore | /singapore/[district] |
+| Barcelona | /barcelona | /barcelona/[district] |
+| Toronto | /toronto | /toronto/[neighborhood] |
+| Amsterdam | /amsterdam | /amsterdam/[district] |
+| Bangkok | /bangkok | /bangkok/[district] |
+| Mexico City | /mexico-city | /mexico-city/[district] |
+| São Paulo | /sao-paulo | /sao-paulo/[district] |
 
 ## URL Structure
 
 ```
 /                        → Homepage (all cities, nearest first)
+/weather-near-me         → Instant local weather via geolocation
 /[city]                  → City overview + all districts
 /[city]/[district]       → Hyperlocal neighborhood weather
 ```
