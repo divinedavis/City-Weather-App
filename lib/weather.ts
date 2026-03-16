@@ -18,6 +18,17 @@ export type WeatherData = {
   wind_speed: number
   wind_deg: number
   icon: string
+  visibility: number  // miles
+  pressure: number    // hPa
+  clouds: number      // %
+}
+
+export type ForecastDay = {
+  date: string
+  high: number
+  low: number
+  description: string
+  icon: string
 }
 
 export async function getWeather(lat: number, lon: number): Promise<WeatherData | null> {
@@ -39,7 +50,50 @@ export async function getWeather(lat: number, lon: number): Promise<WeatherData 
     wind_speed: Math.round(data.wind.speed),
     wind_deg: data.wind.deg,
     icon: data.weather[0].icon,
+    visibility: Math.round((data.visibility ?? 10000) / 1609),
+    pressure: data.main.pressure,
+    clouds: data.clouds?.all ?? 0,
   }
+}
+
+export async function getForecast(lat: number, lon: number): Promise<ForecastDay[]> {
+  const apiKey = process.env.OPENWEATHER_API_KEY
+  if (!apiKey || apiKey === 'your_api_key_here') return []
+  const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`
+  const res = await fetch(url, { next: { revalidate: 3600 } })
+  if (!res.ok) return []
+  const data = await res.json()
+
+  const todayStr = new Date().toLocaleDateString('en-US', { timeZone: 'America/New_York' })
+  const days = new Map<string, { label: string; highs: number[]; lows: number[]; descriptions: string[]; icons: string[] }>()
+
+  for (const item of data.list) {
+    const d = new Date(item.dt * 1000)
+    const dateStr = d.toLocaleDateString('en-US', { timeZone: 'America/New_York' })
+    if (dateStr === todayStr) continue
+    if (!days.has(dateStr)) {
+      days.set(dateStr, {
+        label: d.toLocaleDateString('en-US', { timeZone: 'America/New_York', weekday: 'short', month: 'short', day: 'numeric' }),
+        highs: [],
+        lows: [],
+        descriptions: [],
+        icons: [],
+      })
+    }
+    const day = days.get(dateStr)!
+    day.highs.push(Math.round(item.main.temp_max))
+    day.lows.push(Math.round(item.main.temp_min))
+    day.descriptions.push(item.weather[0].description)
+    day.icons.push(item.weather[0].icon)
+  }
+
+  return Array.from(days.values()).slice(0, 5).map((d) => ({
+    date: d.label,
+    high: Math.max(...d.highs),
+    low: Math.min(...d.lows),
+    description: d.descriptions[Math.floor(d.descriptions.length / 2)],
+    icon: d.icons[Math.floor(d.icons.length / 2)],
+  }))
 }
 
 export async function getAllBoroughWeather(): Promise<WeatherData[]> {

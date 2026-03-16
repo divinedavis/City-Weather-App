@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { NEIGHBORHOODS, getNeighborhoodsByBorough } from '@/lib/neighborhoods'
-import { getWeather, windDirection, capitalize } from '@/lib/weather'
+import { getWeather, getForecast, windDirection, capitalize } from '@/lib/weather'
 import type { Metadata } from 'next'
 
 export const revalidate = 600
@@ -25,7 +25,7 @@ export async function generateMetadata({
   if (!n) return {}
   return {
     title: `${n.name} Weather Today | ${n.borough}, NYC`,
-    description: `Current weather in ${n.name}, ${n.borough}, New York City. Real-time temperature, humidity, wind, and forecast.`,
+    description: `Current weather in ${n.name}, ${n.borough}, New York City. Real-time temperature, humidity, wind, 5-day forecast, and more.`,
     alternates: { canonical: `https://nycweather.app/${n.boroughSlug}/${n.slug}` },
     openGraph: {
       title: `${n.name} Weather Today`,
@@ -46,7 +46,11 @@ export default async function NeighborhoodPage({
   )
   if (!n) notFound()
 
-  const w = await getWeather(n.lat, n.lon)
+  const [w, forecast] = await Promise.all([
+    getWeather(n.lat, n.lon),
+    getForecast(n.lat, n.lon),
+  ])
+
   const updated = new Date().toLocaleString('en-US', {
     timeZone: 'America/New_York',
     dateStyle: 'full',
@@ -95,6 +99,7 @@ export default async function NeighborhoodPage({
           </div>
         ) : (
           <>
+            {/* Current conditions */}
             <div className="bg-white/10 backdrop-blur rounded-3xl p-8 text-center mb-6">
               <img
                 src={`https://openweathermap.org/img/wn/${w.icon}@4x.png`}
@@ -107,7 +112,9 @@ export default async function NeighborhoodPage({
               <p className="text-2xl text-blue-200 capitalize mb-1">{capitalize(w.description)}</p>
               <p className="text-blue-300">Feels like {w.feels_like}°F · H {w.temp_max}° / L {w.temp_min}°</p>
             </div>
-            <div className="grid grid-cols-2 gap-4 mb-6">
+
+            {/* Primary metrics */}
+            <div className="grid grid-cols-2 gap-4 mb-4">
               <div className="bg-white/10 backdrop-blur rounded-2xl p-5">
                 <p className="text-blue-300 text-sm mb-1">Humidity</p>
                 <p className="text-white text-3xl font-light">{w.humidity}%</p>
@@ -118,14 +125,66 @@ export default async function NeighborhoodPage({
                 <p className="text-blue-300 text-sm">{windDirection(w.wind_deg)}</p>
               </div>
             </div>
-            <section className="bg-white/5 rounded-2xl p-6 text-blue-200 text-sm leading-relaxed">
+
+            {/* Secondary metrics */}
+            <div className="grid grid-cols-3 gap-4 mb-6">
+              <div className="bg-white/10 backdrop-blur rounded-2xl p-5">
+                <p className="text-blue-300 text-sm mb-1">Visibility</p>
+                <p className="text-white text-2xl font-light">{w.visibility} mi</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur rounded-2xl p-5">
+                <p className="text-blue-300 text-sm mb-1">Pressure</p>
+                <p className="text-white text-2xl font-light">{w.pressure}</p>
+                <p className="text-blue-300 text-xs">hPa</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur rounded-2xl p-5">
+                <p className="text-blue-300 text-sm mb-1">Cloud Cover</p>
+                <p className="text-white text-2xl font-light">{w.clouds}%</p>
+              </div>
+            </div>
+
+            {/* Weather summary */}
+            <section className="bg-white/5 rounded-2xl p-6 text-blue-200 text-sm leading-relaxed mb-6">
               <h2 className="text-white font-semibold mb-2">{n.name} Weather Summary</h2>
               <p>
                 {n.name} weather today is {w.temp}°F with {w.description}. The high will reach {w.temp_max}°F
                 and the low will drop to {w.temp_min}°F. It feels like {w.feels_like}°F outside.
                 Humidity is at {w.humidity}% with winds from the {windDirection(w.wind_deg)} at {w.wind_speed} mph.
+                Visibility is {w.visibility} miles with {w.clouds}% cloud cover and a pressure of {w.pressure} hPa.
               </p>
             </section>
+
+            {/* 5-day forecast */}
+            {forecast.length > 0 && (
+              <section className="mb-6">
+                <h2 className="text-white font-semibold mb-3">5-Day Forecast</h2>
+                <div className="grid grid-cols-5 gap-2">
+                  {forecast.map((day) => (
+                    <div key={day.date} className="bg-white/10 backdrop-blur rounded-2xl p-3 text-center">
+                      <p className="text-blue-300 text-xs mb-2">{day.date}</p>
+                      <img
+                        src={`https://openweathermap.org/img/wn/${day.icon}@2x.png`}
+                        alt={day.description}
+                        width={40}
+                        height={40}
+                        className="mx-auto"
+                      />
+                      <p className="text-white text-sm font-medium">{day.high}°</p>
+                      <p className="text-blue-300 text-sm">{day.low}°</p>
+                      <p className="text-blue-200 text-xs mt-1 capitalize leading-tight">{capitalize(day.description)}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Neighborhood description */}
+            {n.description && (
+              <section className="bg-white/5 rounded-2xl p-6 text-blue-200 text-sm leading-relaxed mb-6">
+                <h2 className="text-white font-semibold mb-2">About {n.name} Weather</h2>
+                <p>{n.description}</p>
+              </section>
+            )}
           </>
         )}
 
