@@ -1,23 +1,24 @@
 import { MetadataRoute } from 'next'
-import { BOROUGHS } from '@/lib/weather'
-import { NEIGHBORHOODS } from '@/lib/neighborhoods'
+import { CITIES } from '@/lib/cities'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = 'https://nycweather.app'
+  const base = 'https://cityweather.app'
   const now = new Date()
   return [
     { url: base, lastModified: now, changeFrequency: 'hourly', priority: 1 },
-    ...BOROUGHS.map((b) => ({
-      url: `${base}/${b.slug}`,
+    ...CITIES.map((c) => ({
+      url: `${base}/${c.slug}`,
       lastModified: now,
       changeFrequency: 'hourly' as const,
       priority: 0.9,
     })),
-    ...NEIGHBORHOODS.map((n) => ({
-      url: `${base}/${n.boroughSlug}/${n.slug}`,
-      lastModified: now,
-      changeFrequency: 'hourly' as const,
-      priority: 0.8,
-    })),
+    ...CITIES.flatMap((c) =>
+      c.districts.map((d) => ({
+        url: `${base}/${c.slug}/${d.slug}`,
+        lastModified: now,
+        changeFrequency: 'hourly' as const,
+        priority: 0.8,
+      }))
+    ),
   ]
 }
