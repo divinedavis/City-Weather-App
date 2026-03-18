@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CityWeather - Hyperlocal Weather Forecasts</title>
+    <link>https://cityweather.app</link>
+    <description>Hyperlocal weather forecasts for cities and neighborhoods worldwide. Real-time weather data for NYC, London, Tokyo, Paris and 60+ cities.</description>
+    <language>en-us</language>
+    <atom:link href="https://cityweather.app/feed.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>Wed, 18 Mar 2026 17:21:15 -0400</lastBuildDate>
+    <item>
+      <title>New York City Hyperlocal Weather - Neighborhood by Neighborhood</title>
+      <link>https://cityweather.app/nyc</link>
+      <description>Hyperlocal weather forecasts for NYC neighborhoods including Midtown, Brooklyn, Queens, The Bronx and Staten Island.</description>
+      <pubDate>Wed, 18 Mar 2026 17:21:15 -0400</pubDate>
+      <guid>https://cityweather.app/nyc</guid>
+    </item>
+    <item>
+      <title>London Hyperlocal Weather by District</title>
+      <link>https://cityweather.app/london</link>
+      <description>Detailed hyperlocal weather for London districts including Central London, East End, South London and more.</description>
+      <pubDate>Wed, 18 Mar 2026 17:21:15 -0400</pubDate>
+      <guid>https://cityweather.app/london</guid>
+    </item>
+    <item>
+      <title>Tokyo Hyperlocal Weather by Neighborhood</title>
+      <link>https://cityweather.app/tokyo</link>
+      <description>Hyperlocal weather forecasts for Tokyo neighborhoods including Shinjuku, Shibuya, Akihabara and more.</description>
+      <pubDate>Wed, 18 Mar 2026 17:21:15 -0400</pubDate>
+      <guid>https://cityweather.app/tokyo</guid>
+    </item>
+    <item>
+      <title>Paris Hyperlocal Weather by Arrondissement</title>
+      <link>https://cityweather.app/paris</link>
+      <description>Detailed weather forecasts for Paris arrondissements and neighborhoods.</description>
+      <pubDate>Wed, 18 Mar 2026 17:21:15 -0400</pubDate>
+      <guid>https://cityweather.app/paris</guid>
+    </item>
+    <item>
+      <title>Weather Near Me - Find Your Local Forecast</title>
+      <link>https://cityweather.app/weather-near-me</link>
+      <description>Use your location to find hyperlocal weather forecasts for your exact neighborhood.</description>
+      <pubDate>Wed, 18 Mar 2026 17:21:15 -0400</pubDate>
+      <guid>https://cityweather.app/weather-near-me</guid>
+    </item>
+    <item>
+      <title>NYC Weather in January - What to Expect</title>
+      <link>https://cityweather.app/nyc/weather/january</link>
+      <description>Complete guide to New York City weather in January - temperatures, precipitation, what to wear.</description>
+      <pubDate>Wed, 18 Mar 2026 17:21:15 -0400</pubDate>
+      <guid>https://cityweather.app/nyc/weather/january</guid>
+    </item>
+    <item>
+      <title>Dubai Hyperlocal Weather</title>
+      <link>https://cityweather.app/dubai</link>
+      <description>Hyperlocal weather forecasts for Dubai neighborhoods and districts.</description>
+      <pubDate>Wed, 18 Mar 2026 17:21:15 -0400</pubDate>
+      <guid>https://cityweather.app/dubai</guid>
+    </item>
+    <item>
+      <title>Sydney Hyperlocal Weather by Suburb</title>
+      <link>https://cityweather.app/sydney</link>
+      <description>Hyperlocal weather forecasts for Sydney suburbs and neighborhoods.</description>
+      <pubDate>Wed, 18 Mar 2026 17:21:15 -0400</pubDate>
+      <guid>https://cityweather.app/sydney</guid>
+    </item>
+  </channel>
+</rss>

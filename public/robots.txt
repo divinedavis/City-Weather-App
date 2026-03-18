@@ -27,3 +27,4 @@ Allow: /
 Disallow: /widget/
 
 Sitemap: https://cityweather.app/sitemap.xml
+Sitemap: https://cityweather.app/feed.xml
