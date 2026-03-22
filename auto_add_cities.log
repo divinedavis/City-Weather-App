@@ -912,3 +912,21 @@ subprocess.TimeoutExpired: Command '['npm', 'run', 'build']' timed out after 300
 2026-03-21 06:00:03,237  ERROR  Error generating Budapest: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CZFiQwdtcyQk1AuY1R8KJ'}
 2026-03-21 06:00:03,240  INFO  Restored cities.ts from backup
 2026-03-21 06:00:03,240  INFO  Restored cities.ts from backup
+2026-03-22 06:00:03,001  INFO  ============================================================
+2026-03-22 06:00:03,001  INFO  ============================================================
+2026-03-22 06:00:03,002  INFO  auto_add_cities.py starting — 2026-03-22T06:00:03.002303
+2026-03-22 06:00:03,002  INFO  auto_add_cities.py starting — 2026-03-22T06:00:03.002303
+2026-03-22 06:00:03,002  INFO  Processing batch of 30 cities: ['Budapest', 'Copenhagen', 'Stockholm', 'Oslo', 'Helsinki', 'Athens', 'Warsaw', 'Zurich', 'Brussels', 'Munich', 'Milan', 'Dublin', 'Edinburgh', 'Moscow', 'Cairo', 'Cape Town', 'Johannesburg', 'Nairobi', 'Lagos', 'Casablanca', 'Delhi', 'Bangalore', 'Kolkata', 'Chennai', 'Hyderabad', 'Pune', 'Jaipur', 'Ahmedabad', 'Karachi', 'Lahore']
+2026-03-22 06:00:03,002  INFO  Processing batch of 30 cities: ['Budapest', 'Copenhagen', 'Stockholm', 'Oslo', 'Helsinki', 'Athens', 'Warsaw', 'Zurich', 'Brussels', 'Munich', 'Milan', 'Dublin', 'Edinburgh', 'Moscow', 'Cairo', 'Cape Town', 'Johannesburg', 'Nairobi', 'Lagos', 'Casablanca', 'Delhi', 'Bangalore', 'Kolkata', 'Chennai', 'Hyderabad', 'Pune', 'Jaipur', 'Ahmedabad', 'Karachi', 'Lahore']
+2026-03-22 06:00:03,218  INFO  Backed up cities.ts to /var/www/nycweather/lib/cities.ts.bak
+2026-03-22 06:00:03,218  INFO  Backed up cities.ts to /var/www/nycweather/lib/cities.ts.bak
+2026-03-22 06:00:03,219  INFO  → Generating Budapest...
+2026-03-22 06:00:03,219  INFO  → Generating Budapest...
+2026-03-22 06:00:03,219  INFO    Calling Claude for Budapest...
+2026-03-22 06:00:03,219  INFO    Calling Claude for Budapest...
+2026-03-22 06:00:03,284  INFO  HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2026-03-22 06:00:03,284  INFO  HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2026-03-22 06:00:03,285  ERROR  Error generating Budapest: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CZHcDsNfEAMkWrBZ3WHNC'}
+2026-03-22 06:00:03,285  ERROR  Error generating Budapest: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CZHcDsNfEAMkWrBZ3WHNC'}
+2026-03-22 06:00:03,292  INFO  Restored cities.ts from backup
+2026-03-22 06:00:03,292  INFO  Restored cities.ts from backup
