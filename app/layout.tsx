@@ -38,6 +38,7 @@ export const metadata: Metadata = {
     'apple-mobile-web-app-status-bar-style': 'black-translucent',
     'apple-mobile-web-app-title': 'City Weather',
     'theme-color': '#1e3a5f',
+    'news_keywords': 'weather forecast, temperature today, rain, snow, heat wave, cold snap, wind advisory, storm, neighborhood weather, city weather, hyperlocal weather, weather alert, weather conditions',
   },
 }
 
