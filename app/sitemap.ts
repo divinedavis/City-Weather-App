@@ -40,6 +40,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   )
 
+
+  const districtMonthlyPages: MetadataRoute.Sitemap = CITIES.flatMap((c) =>
+    c.districts.flatMap((d) =>
+      MONTHS.map((month) => ({
+        url: `${base}/${c.slug}/${d.slug}/weather/${month}`,
+        lastModified: now,
+        changeFrequency: 'monthly' as const,
+        priority: 0.6,
+      }))
+    )
+  )
+
   const comparePairs: MetadataRoute.Sitemap = []
   for (let i = 0; i < POPULAR_SLUGS.length; i++) {
     for (let j = i + 1; j < POPULAR_SLUGS.length; j++) {
@@ -68,6 +80,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...districtPages,
     ...guidePages,
     ...monthlyPages,
+    ...districtMonthlyPages,
     ...comparePairs,
   ]
 }

@@ -62,9 +62,71 @@ export default async function CityGuidePage({ params }: { params: Promise<{ city
     about: { '@type': 'City', name: city.name },
   }
 
+
+  const cityFaqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: `What is the best time to visit ${city.name}?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: guide?.bestMonths
+            ? `The best time to visit ${city.name} is ${guide.bestMonths}. ${guide.overview}`
+            : `${city.description}`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `What is the weather like in ${city.name} in summer?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: guide?.seasons?.find((s) => s.season.toLowerCase().includes('summer'))?.description
+            ?? `${city.name} summers vary by neighborhood. ${city.description}`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `What is the weather like in ${city.name} in winter?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: guide?.seasons?.find((s) => s.season.toLowerCase().includes('winter'))?.description
+            ?? `${city.name} winters vary by neighborhood. ${city.description}`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `Which neighborhood in ${city.name} has the mildest weather?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `Different neighborhoods in ${city.name} experience distinct microclimates. ${city.description} Browse the neighborhood pages on this site to compare current conditions across ${city.name}.`,
+        },
+      },
+    ],
+  }
+
+  const howToSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: `How to dress for weather in ${city.name}`,
+    description: `A practical guide to dressing for the weather in ${city.name} across all seasons.`,
+    step: guide?.packingTips?.map((tip, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      text: tip,
+    })) ?? [
+      { '@type': 'HowToStep', position: 1, text: `Check the current temperature and conditions for your specific ${city.name} neighborhood before heading out.` },
+      { '@type': 'HowToStep', position: 2, text: `Layer clothing to adapt to ${city.name}'s variable conditions throughout the day.` },
+      { '@type': 'HowToStep', position: 3, text: 'Carry a light rain jacket for unexpected showers.' },
+    ],
+  }
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(cityFaqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
 
