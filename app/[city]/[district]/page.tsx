@@ -22,21 +22,14 @@ export async function generateMetadata({
   const city = getCity(citySlug)
   const district = getDistrict(citySlug, districtSlug)
   if (!city || !district) return {}
-  const url = `https://cityweather.app/${city.slug}/${district.slug}`
   return {
     title: `${district.name} Weather Today | ${city.name} Neighborhood Weather`,
     description: `${district.name} weather right now: current temperature, conditions, and 5-day forecast for ${district.name} in ${city.name}, ${city.country}. Updated every 10 minutes.`,
-    alternates: {
-      canonical: url,
-      languages: {
-        'en': url,
-        'x-default': url,
-      },
-    },
+    alternates: { canonical: `https://cityweather.app/${city.slug}/${district.slug}` },
     openGraph: {
       title: `${district.name} Weather Today & Right Now | ${city.name}`,
       description: `Real-time hyperlocal weather for ${district.name}, ${city.name}. Current conditions updated every 10 minutes.`,
-      url,
+      url: `https://cityweather.app/${city.slug}/${district.slug}`,
     },
     other: {
       'geo.placename': `${district.name}, ${city.name}, ${city.country}`,
@@ -70,23 +63,6 @@ export default async function DistrictPage({
   const nearby = city.districts
     .filter((d) => d.slug !== districtSlug && d.group === district.group)
     .slice(0, 6)
-
-  // Nearby neighborhoods by adjacency in the districts array
-  const districtIndex = city.districts.findIndex((d) => d.slug === districtSlug)
-  const adjacentDistricts: typeof city.districts = []
-  if (districtIndex !== -1) {
-    const total = city.districts.length
-    for (let offset = 1; adjacentDistricts.length < 4; offset++) {
-      const prev = city.districts[(districtIndex - offset + total) % total]
-      const next = city.districts[(districtIndex + offset) % total]
-      if (prev && prev.slug !== districtSlug && !adjacentDistricts.find((d) => d.slug === prev.slug)) {
-        adjacentDistricts.push(prev)
-      }
-      if (adjacentDistricts.length < 4 && next && next.slug !== districtSlug && !adjacentDistricts.find((d) => d.slug === next.slug)) {
-        adjacentDistricts.push(next)
-      }
-    }
-  }
 
   const schemaOrg = {
     '@context': 'https://schema.org',
@@ -246,25 +222,8 @@ export default async function DistrictPage({
           </>
         )}
 
-        {adjacentDistricts.length > 0 && (
-          <nav className="mt-8 bg-white/5 rounded-2xl p-6">
-            <h2 className="text-white font-semibold mb-3">Nearby Neighborhoods</h2>
-            <div className="grid grid-cols-2 gap-2">
-              {adjacentDistricts.map((d) => (
-                <Link
-                  key={d.slug}
-                  href={`/${city.slug}/${d.slug}`}
-                  className="text-blue-200 hover:text-white text-sm px-4 py-2 bg-white/10 rounded-xl hover:bg-white/20 transition"
-                >
-                  {d.name} Weather →
-                </Link>
-              ))}
-            </div>
-          </nav>
-        )}
-
         {nearby.length > 0 && (
-          <nav className="mt-6">
+          <nav className="mt-10">
             <p className="text-blue-300 text-sm mb-3">More {district.group ?? city.name} Neighborhoods</p>
             <div className="flex flex-wrap gap-2">
               {nearby.map((d) => (

@@ -97,50 +97,9 @@ export default async function WeatherNearMe() {
     },
   }
 
-
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'What is the weather near me right now?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'City Weather detects your approximate location from your IP address and instantly shows the current temperature, conditions, humidity, wind speed, and 5-day forecast for the nearest neighborhood in our database. Data is updated every 10 minutes.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How accurate is hyperlocal weather?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Hyperlocal weather uses precise latitude and longitude coordinates for each neighborhood rather than a single city-wide reading. Coastal areas, parks, and high-rise corridors can differ by 5-10 degrees F from each other - our neighborhood-level data captures those differences.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Which neighborhoods have the most extreme weather?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: "In New York City, coastal neighborhoods like Coney Island, Rockaway Beach, and Red Hook experience the most extreme weather. Inland neighborhoods like Bushwick and the South Bronx are hottest in summer due to the urban heat island effect.",
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How often is the weather data updated?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Weather data is fetched from OpenWeatherMap using precise coordinates for each neighborhood and cached for 10 minutes. This means conditions are refreshed up to 6 times per hour, giving you near-real-time accuracy.',
-        },
-      },
-    ],
-  }
-
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <main className="max-w-2xl mx-auto px-4 py-12">
         <div className="flex gap-3 text-sm text-blue-300 mb-8">
           <Link href="/" className="hover:text-white transition">Cities</Link>

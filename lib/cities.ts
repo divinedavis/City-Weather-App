@@ -89,10 +89,6 @@ export const CITIES: City[] = [
       { name: 'New Dorp', slug: 'new-dorp', lat: 40.5731, lon: -74.1130, group: 'Staten Island', description: "Mid-island New Dorp gets coastal influence from the Atlantic to the southeast while wooded terrain provides natural windbreaks." },
       { name: 'Tottenville', slug: 'tottenville', lat: 40.5126, lon: -74.2518, group: 'Staten Island', description: "NYC's southernmost neighborhood, Tottenville is fully exposed to Raritan Bay and catches the full force of southerly storms and nor'easters." },
       { name: 'Snug Harbor', slug: 'snug-harbor', lat: 40.6424, lon: -74.1018, group: 'Staten Island', description: "Snug Harbor Cultural Center's grounds and trees buffer Kill van Kull winds and provide cooler summer conditions than surrounding streets." },
-    
-      { name: 'Yankee Stadium', slug: 'yankee-stadium', lat: 40.8296, lon: -73.9262, group: 'The Bronx', description: "Yankee Stadium in the South Bronx sits near the Harlem River where water-moderated air can make game-day conditions slightly cooler or foggier than surrounding inland blocks. The stadium's open bowl design channels wind across the field and upper deck, and the dense surrounding neighborhood creates a heat island that lingers after night games." },
-      { name: 'Madison Square Garden', slug: 'madison-square-garden', lat: 40.7505, lon: -74.0035, group: 'Manhattan', description: "Madison Square Garden sits atop Penn Station in the heart of Midtown's densest urban canyon, where surrounding skyscrapers create powerful wind tunnels on windy days and trap heat in summer. The Midtown location puts it directly in New York's most intense urban heat island zone." },
-      { name: 'Central Park', slug: 'central-park', lat: 40.7851, lon: -73.9683, group: 'Manhattan', description: "Central Park's 843 acres create Manhattan's most significant urban cooling effect, reducing temperatures by 2-4°C versus surrounding streets on hot days. The park's open meadows, lakes, and tree canopy generate local sea-breeze-like circulations that draw cooler park air into adjacent Upper West Side and Upper East Side neighborhoods." },
     ],
   },
   {
@@ -125,9 +121,6 @@ export const CITIES: City[] = [
       { name: 'Stratford', slug: 'stratford', lat: 51.5416, lon: -0.0033, group: 'East London', description: "Stratford's Olympic Park opened up large green spaces that have improved air quality and slightly moderated temperatures in this formerly industrial area." },
       { name: 'Southwark', slug: 'southwark', lat: 51.5034, lon: -0.0898, group: 'South East London', description: "Southwark's South Bank riverside walk faces north across the Thames, catching prevailing westerlies and experiencing significant temperature drop at the riverside compared to inland streets." },
       { name: 'Bermondsey', slug: 'bermondsey', lat: 51.4985, lon: -0.0742, group: 'South East London', description: "Bermondsey's former industrial riverside character means relatively low tree cover and some heat retention, though its Thames-adjacent location brings river breezes." },
-    
-      { name: 'Wembley Stadium', slug: 'wembley-stadium', lat: 51.5560, lon: -0.2796, group: 'North West', description: "Wembley Stadium sits on the Middlesex plateau northwest of London where the urban heat island is weaker than central London, making match days slightly cooler but more exposed to Atlantic frontal systems that sweep in from the southwest. The stadium's elevated position and large open concourses experience wind gusts that feel significantly stronger than surrounding suburban streets." },
-      { name: 'O2 Arena', slug: 'o2-arena', lat: 51.5030, lon: 0.0032, group: 'East', description: "The O2 Arena on the Greenwich Peninsula sits on reclaimed riverside land where Thames estuary winds create some of inner London's most exposed conditions. The open riverside approach and the peninsula's projection into the river means wind chill is significantly stronger here than in central London, and Thames fog events affect the area more than inland neighborhoods." },
     ],
   },
   {
@@ -160,9 +153,6 @@ export const CITIES: City[] = [
       { name: 'Akasaka', slug: 'akasaka', lat: 35.6742, lon: 139.7372, group: 'Central Tokyo', description: "Akasaka's government and hotel district on elevated terrain above the Sotobori moat benefits from hill breezes and proximity to Hie Shrine's wooded grounds." },
       { name: 'Omotesando', slug: 'omotesando', lat: 35.6652, lon: 139.7120, group: 'Central Tokyo', description: "Omotesando's famous zelkova tree-lined boulevard creates a rare natural cooling corridor in central Tokyo, with the tree canopy reducing summer temperatures significantly." },
       { name: 'Tsukiji', slug: 'tsukiji', lat: 35.6654, lon: 139.7707, group: 'Central Tokyo', description: "Tsukiji's bayside location near the old fish market brings Tokyo Bay sea breezes on summer afternoons, offering some relief from inland heat." },
-    
-      { name: 'Narita Airport', slug: 'narita-airport', lat: 35.7720, lon: 140.3929, group: 'East Tokyo', description: "Narita Airport sits 60km east of central Tokyo on the Kanto Plain where flat terrain and proximity to Tokyo Bay create significant morning fog and crosswinds. Travelers should expect 2-3°C cooler temperatures than central Tokyo and higher wind speeds due to the exposed agricultural plateau setting." },
-      { name: 'Haneda Airport', slug: 'haneda-airport', lat: 35.5494, lon: 139.7798, group: 'Tokyo Bay', description: "Haneda Airport's bay-side position on reclaimed Tokyo Bay land exposes it to direct sea winds from the south that create turbulence during summer monsoon arrivals. The airport microclimate features higher humidity than central Tokyo and frequent low cloud cover driven by warm bay moisture meeting cooler air masses." },
     ],
   },
   {
@@ -195,11 +185,6 @@ export const CITIES: City[] = [
       { name: 'Boulogne', slug: 'boulogne', lat: 48.8352, lon: 2.2397, group: 'West Paris', description: "Adjacent to the vast Bois de Boulogne, this western suburb benefits enormously from the forest's cooling effect — among the freshest summer microclimates in greater Paris." },
       { name: 'Vincennes', slug: 'vincennes', lat: 48.8479, lon: 2.4388, group: 'East Paris', description: "Vincennes borders the Bois de Vincennes, Paris's eastern forest, which keeps local temperatures several degrees lower than the city center on hot summer days." },
       { name: 'Saint-Denis', slug: 'saint-denis', lat: 48.9362, lon: 2.3574, group: 'North Paris', description: "Saint-Denis north of Paris experiences more extreme weather than the sheltered city center — stronger winds, harder frosts in winter, and more heat in summer without Haussmann density buffering." },
-    
-      { name: 'Charles de Gaulle Airport', slug: 'cdg-airport', lat: 49.0097, lon: 2.5479, group: 'North Suburbs', description: "CDG Airport sits on the Roissy plateau north of Paris where flat open terrain creates windier, cooler conditions than central Paris — expect 2-4°C colder in winter and more frequent fog. The plateau's exposure means Parisian temperature inversions that trap pollution in the city often leave the airport in clearer, colder air." },
-    
-      { name: 'Eiffel Tower', slug: 'eiffel-tower', lat: 48.8584, lon: 2.2945, group: 'Central', description: "The Eiffel Tower on the Champ de Mars open park creates a distinctive microclimate: the large green space provides cooling in summer while the tower itself generates wind turbulence at its base. The open riverfront on the Seine catches prevailing westerly winds, making this area one of central Paris's windier spots." },
-      { name: 'Stade de France', slug: 'stade-de-france', lat: 48.9244, lon: 2.3601, group: 'North Suburbs', description: "Stade de France in Saint-Denis sits in the industrial Seine-Saint-Denis plain where the urban heat island is intense due to dense impervious surfaces and limited green space. The stadium's proximity to the Seine and the flat plain means fog events and wind from the northwest arrive more directly than in central Paris." },
     ],
   },
   {
@@ -227,11 +212,6 @@ export const CITIES: City[] = [
       { name: 'Al Quoz', slug: 'al-quoz', lat: 25.1502, lon: 55.2255, group: 'Central Dubai', description: "Al Quoz's industrial and arts district in central Dubai has minimal tree cover and high thermal mass from warehouses, creating intense heat retention." },
       { name: 'Dubai Creek', slug: 'dubai-creek', lat: 25.2631, lon: 55.3006, group: 'Old Dubai', description: "The historic Dubai Creek waterway provides evaporative cooling along its banks, making waterfront dining and walking more comfortable than inland streets." },
       { name: 'Mirdif', slug: 'mirdif', lat: 25.2264, lon: 55.4147, group: 'East Dubai', description: "Mirdif's suburban residential character in eastern Dubai, distant from the Gulf, means hotter and more arid conditions with minimal sea breeze influence." },
-    
-      { name: 'Dubai International Airport', slug: 'dubai-international-airport', lat: 25.2532, lon: 55.3657, group: 'East Dubai', description: "Dubai International Airport's inland desert position means travelers face extreme airport weather — summer temperatures regularly exceed 45°C on the tarmac with oppressive Gulf humidity. The flat exposed terrain channels shamal desert winds that carry fine sand and significantly reduce visibility during spring dust events." },
-    
-      { name: 'Burj Khalifa', slug: 'burj-khalifa', lat: 25.1972, lon: 55.2744, group: 'Central Dubai', description: "The Burj Khalifa at 828 metres creates powerful updrafts and wind shear that affect nearby street-level conditions — pedestrians at the base experience unpredictable gusts channeled by the surrounding Downtown Dubai tower cluster. The observation decks at height can be 8-12°C cooler than street level, and cloud cover from Gulf humidity sometimes forms at mid-tower height." },
-      { name: 'Dubai Mall', slug: 'dubai-mall', lat: 25.1975, lon: 55.2796, group: 'Central Dubai', description: "Dubai Mall sits adjacent to the Burj Khalifa in Downtown Dubai's most intense urban heat zone, where glass-and-steel facades reflect and amplify solar radiation to create some of the UAE's hottest outdoor conditions. The mall's fountains provide localized evaporative cooling around the exterior promenade, but summer temperatures outside regularly exceed 45°C." },
     ],
   },
   {
@@ -259,11 +239,6 @@ export const CITIES: City[] = [
       { name: 'Mosman', slug: 'mosman', lat: -33.8265, lon: 151.2453, group: 'North Shore', description: "Mosman's position on a harbour headland with water on three sides gives it exceptional harbour breezes and among Sydney's most pleasant summer microclimates." },
       { name: 'Balmain', slug: 'balmain', lat: -33.8604, lon: 151.1792, group: 'Inner West', description: "Balmain's peninsula into the Parramatta River gives it water exposure on three sides, with consistent harbour breezes and cooling sea air." },
       { name: 'Redfern', slug: 'redfern', lat: -33.8929, lon: 151.2042, group: 'Inner South', description: "Redfern's flat inland position south of the CBD means heat accumulates without much coastal ventilation. The suburb is warming faster than coastal areas due to densification." },
-    
-      { name: 'Kingsford Smith Airport', slug: 'kingsford-smith-airport', lat: -33.9461, lon: 151.1772, group: 'South', description: "Sydney Airport sits on Botany Bay's north shore where southerly buster wind changes arrive first — aircraft experience the Southerly Buster 15-20 minutes before the CBD. The bay location brings sea fog from the south in winter and strong crosswinds during the afternoon seabreeze that affect flight operations." },
-    
-      { name: 'Sydney Opera House', slug: 'sydney-opera-house', lat: -33.8568, lon: 151.2153, group: 'Harbour', description: "The Sydney Opera House on Bennelong Point projects into Sydney Harbour on three sides, making it one of the city's most exposed locations to harbour breezes. The open water on nearly all sides delivers the Southerly Buster's full force during summer sea change events, and the waterfront position means higher humidity and occasional harbour fog in winter mornings." },
-      { name: 'ANZ Stadium', slug: 'anz-stadium', lat: -33.8474, lon: 151.0642, group: 'West', description: "ANZ Stadium in Olympic Park, Homebush sits inland where the moderating harbour influence is reduced and the western suburbs' heat island effect is more pronounced. Summer events face western Sydney's characteristically hotter conditions — often 5-7°C warmer than coastal venues — and the stadium's bowl design can trap humid heat on still days." },
     ],
   },
   {
@@ -318,8 +293,6 @@ export const CITIES: City[] = [
       { name: 'Bridgeport', slug: 'bridgeport', lat: 41.8332, lon: -87.6498, group: 'South Side', description: "Bridgeport's South Side industrial heritage left it with low tree coverage and high heat-absorbing pavement. The Chicago River's South Branch provides minimal cooling, and summer heat index values consistently exceed the lakefront by 10°F." },
       { name: 'Rogers Park', slug: 'rogers-park', lat: 42.0121, lon: -87.6695, group: 'Far North', description: "Rogers Park at Chicago's northern tip has genuine lakefront access — the beach and lake presence moderate summer temperatures and create a distinct microclimate compared to the dense inland neighborhoods just blocks west." },
       { name: 'River North', slug: 'river-north', lat: 41.8917, lon: -87.6345, group: 'Downtown', description: "River North's dense gallery and restaurant district sits just inland from the lakefront, catching lake breezes on strong wind days. The Chicago River's North Branch creates a minor cooling corridor through the neighborhood." },
-    
-      { name: "O'Hare Airport", slug: 'ohare-airport', lat: 41.9742, lon: -87.9073, group: 'Northwest', description: "O'Hare sits on Chicago's flat northwest suburban plain, fully exposed to Great Plains weather systems. The airport is notorious for severe winter wind chills, summer thunderstorm clusters, and springtime fog from temperature contrasts between cold lake air and warm prairie air masses." },
     ],
   },
   {
@@ -347,8 +320,6 @@ export const CITIES: City[] = [
       { name: 'Little Haiti', slug: 'little-haiti', lat: 25.8311, lon: -80.1979, group: 'North Miami', description: "Little Haiti's flat inland neighborhood north of downtown has limited coastal influence and minimal tree canopy, creating hot and humid conditions that intensify during Miami's daily afternoon thunderstorm season." },
       { name: 'Doral', slug: 'doral', lat: 25.8194, lon: -80.3550, group: 'West Miami', description: "Doral in western Miami-Dade is among the hottest spots in the metro — maximum distance from ocean breezes, flat terrain, and a heavily developed commercial landscape create extreme urban heat island conditions in summer." },
       { name: 'Homestead', slug: 'homestead', lat: 25.4687, lon: -80.4776, group: 'South Dade', description: "Homestead at Miami's southern edge has proximity to Biscayne National Park and Florida Bay, providing some maritime moderation. However, its agricultural inland character means less urban heat island effect but more exposure to unfiltered tropical weather." },
-    
-      { name: 'Miami International Airport', slug: 'miami-international-airport', lat: 25.7959, lon: -80.2870, group: 'Northwest', description: "Miami International Airport sits inland where afternoon sea breezes arrive after crossing the city's urban heat island. The flat low-lying terrain amplifies thunderstorm development during summer, and the airport's position in the drainage basin makes it vulnerable to flooding during intense tropical rainfall." },
     ],
   },
   {
@@ -403,8 +374,6 @@ export const CITIES: City[] = [
       { name: 'Sants', slug: 'sants', lat: 41.3756, lon: 2.1399, group: 'West', description: "Sants' dense working-class neighborhood west of the Eixample is cut off from sea breezes by intervening development. The train station area generates significant thermal mass, and summer temperatures here rival the hottest Eixample blocks." },
       { name: 'Diagonal Mar', slug: 'diagonal-mar', lat: 41.4100, lon: 2.2200, group: 'Coastal', description: "Diagonal Mar's modern waterfront development at the end of Avinguda Diagonal faces the Mediterranean directly, receiving strong afternoon sea breezes and open coastal exposure. Its relatively low density compared to older neighborhoods allows good ventilation." },
       { name: 'Vall d\'Hebron', slug: 'vall-dhebron', lat: 41.4275, lon: 2.1510, group: 'North', description: "Vall d'Hebron's high elevation near Collserola delivers Barcelona's most pronounced mountain microclimate — temperatures average 4–6°C cooler than the waterfront in summer, with regular mountain breezes and higher rainfall than the coastal neighborhoods." },
-    
-      { name: 'El Prat Airport', slug: 'el-prat-airport', lat: 41.2974, lon: 2.0833, group: 'South', description: "El Prat Airport sits on the Llobregat delta where the flat coastal plain creates strong sea breezes that arrive unobstructed. Summer thunderstorm clusters from the Pyrenees track southeast over the airport, while the coastal position means higher humidity and morning fog than inland Barcelona neighborhoods." },
     ],
   },
   {
@@ -432,8 +401,6 @@ export const CITIES: City[] = [
       { name: 'Rosedale', slug: 'rosedale', lat: 43.6802, lon: -79.3768, group: 'Midtown', description: "Rosedale's ravine system and mature tree canopy create Toronto's most significant natural cooling corridor north of downtown — the Don and Yellow Creek ravines channel cool air and their tree coverage reduces summer temperatures by 3–5°C." },
       { name: 'Junction', slug: 'junction', lat: 43.6656, lon: -79.4613, group: 'West End', description: "The Junction's west-end inland position removes it from lake influence and places it in the heart of Toronto's urban heat island. The Humber River valley to the west provides some cooling drainage, but summer heat builds noticeably here." },
       { name: 'Waterfront', slug: 'waterfront', lat: 43.6390, lon: -79.3760, group: 'Downtown South', description: "Toronto's revitalized Waterfront sits directly on Lake Ontario, experiencing the city's most pronounced lake effect — dramatically cooler in summer with reliable afternoon lake breezes, but exposed to intense blizzard conditions when winter storms cross the lake." },
-    
-      { name: 'Pearson Airport', slug: 'pearson-airport', lat: 43.6777, lon: -79.6248, group: 'Northwest', description: "Toronto Pearson sits on the Peel Plain northwest of the city, exposed to Arctic air masses and lake-effect snow bands from Lake Ontario. The airport is one of Canada's snowiest major airports, with wind chills regularly reaching -30°C during winter Arctic outbreaks." },
     ],
   },
   {
@@ -461,8 +428,6 @@ export const CITIES: City[] = [
       { name: 'IJburg', slug: 'ijburg', lat: 52.3576, lon: 5.0075, group: 'East (Islands)', description: "IJburg's artificial islands in the IJmeer lake east of Amsterdam experience the most exposed maritime conditions in the city — surrounded by open water, the islands receive unimpeded wind from all directions and experience the most dramatic temperature moderation." },
       { name: 'Waterlooplein', slug: 'waterlooplein', lat: 52.3678, lon: 4.9043, group: 'Center', description: "Waterlooplein's position at the confluence of the Amstel river and the canal ring creates dynamic water-driven wind patterns. The low-lying riverside location makes it prone to autumn fog and canal moisture on cold clear nights." },
       { name: 'Sloterdijk', slug: 'sloterdijk', lat: 52.3877, lon: 4.8376, group: 'West', description: "Sloterdijk's business district near the Amsterdam port is Amsterdam's most wind-exposed commercial area — the open harbor and North Sea Canal create unobstructed westerly flow that makes outdoor conditions markedly windier than the sheltered canal city center." },
-    
-      { name: 'Schiphol Airport', slug: 'schiphol-airport', lat: 52.3105, lon: 4.7683, group: 'South', description: "Schiphol Airport sits 4 metres below sea level in a drained lake polder, creating a microclimate prone to radiation fog on clear nights when the bowl-like terrain traps cold air. The North Sea exposure brings frequent strong westerly winds, making Schiphol one of Europe's windiest major airports." },
     ],
   },
   {
@@ -600,9 +565,7 @@ export const CITIES: City[] = [
         { name: 'Dharavi', slug: 'dharavi', lat: 19.0423, lon: 72.8546, group: 'Central Mumbai', description: "Dharavi's extremely dense informal fabric with narrow lanes, corrugated metal roofing, and minimal open space creates one of the world's most intense localized urban heat islands, with surface temperatures exceeding surrounding areas by 5–7°C during summer. The Mahim Creek and Mithi River boundaries provide no cooling relief, instead contributing stagnant humid air that compounds thermal discomfort." },
         { name: 'Thane', slug: 'thane', lat: 19.2183, lon: 72.9781, group: 'Extended North', description: "Thane's position at the head of the Thane Creek with the Yeoor Hills to the north creates a basin microclimate where monsoon moisture is funneled and trapped, producing some of the Mumbai Metropolitan Region's highest rainfall totals. The creek's tidal influence moderates temperatures along the waterfront Ghodbunder corridor, but rapid high-rise development on former hill slopes has disrupted natural drainage and wind patterns." },
         { name: 'Versova', slug: 'versova', lat: 19.1337, lon: 72.8142, group: 'Coastal West', description: "Versova's position at the mouth of the Malad Creek where it meets the Arabian Sea creates a convergence of marine and estuarine winds that makes it one of western Mumbai's breeziest coastal spots. The low-lying fishing village terrain and proximity to tidal mudflats make it highly vulnerable to storm surges, and the salt-laden air accelerates corrosion while maintaining persistently high relative humidity above 85% even in non-monsoon months." },
-      
-      { name: 'Chhatrapati Shivaji Airport', slug: 'csia-airport', lat: 19.0896, lon: 72.8656, group: 'Central', description: "Mumbai's Chhatrapati Shivaji International Airport sits in the heart of the urban agglomeration where the urban heat island raises temperatures 3-4°C above coastal readings. The central position means monsoon rainfall is enhanced by urban heat-driven convection, and flooding during intense monsoon events has disrupted operations multiple times." },
-    ],
+      ],
     },
 
   {
@@ -630,9 +593,7 @@ export const CITIES: City[] = [
         { name: 'Eunpyeong-gu', slug: 'eunpyeong-gu', lat: 37.6176, lon: 126.9227, group: 'North West', description: "Eunpyeong-gu's location in a broad valley opening toward Bukhansan National Park gives it some of Seoul's best natural ventilation as mountain air flows down through the Bulgwangcheon stream corridor. However, this same topography funnels cold Siberian air in winter, and the district frequently records temperatures 2–3°C below the Han River corridor." },
         { name: 'Seocho-gu', slug: 'seocho-gu', lat: 37.4837, lon: 127.0324, group: 'South of Han', description: "Seocho-gu spans from the dense Gangnam-adjacent commercial core to the forested northern slopes of Umyeonsan (293m) and Cheonggyesan (618m), creating dramatic microclimate contrasts within a single district. The mountains' green corridors channel cooler air toward the Express Bus Terminal area, but the Banpo riverside zone experiences intense reflected heat from the waterfront apartment towers." },
         { name: 'Seongbuk-gu', slug: 'seongbuk-gu', lat: 37.5894, lon: 127.0167, group: 'North', description: "Seongbuk-gu wraps around the inner slopes of Bukhansan and Bugaksan, with winding hillside neighborhoods that experience 3–4°C cooler summer afternoons than the Jongno flatlands directly below. The dense tree canopy along the old Seoul Fortress Wall trail acts as a natural cooling belt, but the steep terrain creates frost pockets in winter where cold air settles in narrow residential valleys." },
-      
-      { name: 'Incheon Airport', slug: 'incheon-airport', lat: 37.4602, lon: 126.4407, group: 'West', description: "Incheon International Airport on Yeongjong Island enjoys maritime moderation compared to inland Seoul — summers are cooler and winters milder. The island position means frequent sea fog in spring and typhoon tracks from the south pass directly through this area in late summer." },
-    ],
+      ],
     },
 
   {
@@ -688,9 +649,7 @@ export const CITIES: City[] = [
         { name: 'San Lorenzo', slug: 'san-lorenzo', lat: 41.8970, lon: 12.5170, group: 'East', description: "San Lorenzo's compact 19th-century workers' housing and proximity to the massive rail infrastructure of Roma Termini and Tiburtina create a pronounced heat island intensified by steel tracks and dark roofing. The flat terrain east of the historic hills receives little benefit from topographic breezes, and the scarcity of parks leaves few refuges from summer heat." },
         { name: 'Appio-Latino', slug: 'appio-latino', lat: 41.8720, lon: 12.5150, group: 'Southeast', description: "Appio-Latino spreads across the gentle slopes of the ancient Appian Way corridor, where the open parkland of the Caffarella valley and Parco degli Acquedotti creates a green wedge that channels cooler countryside air into the urban fabric. The contrast between the leafy archaeological park zones and the dense residential blocks along Via Appia Nuova produces hyperlocal temperature differences of up to 4°C on summer afternoons." },
         { name: 'Ostiense', slug: 'ostiense', lat: 41.8650, lon: 12.4770, group: 'South Central', description: "Ostiense's post-industrial landscape of former power stations, warehouses, and rail yards along the Tiber creates extensive dark, heat-absorbing surfaces that amplify summer temperatures in this low-lying river district. The ongoing conversion to nightlife and university use has increased impervious surface area, though the Tiber's proximity adds humidity that makes summer heat feel more oppressive than thermometers alone suggest." },
-      
-      { name: 'Fiumicino Airport', slug: 'fiumicino-airport', lat: 41.8003, lon: 12.2389, group: 'Southwest', description: "Fiumicino Airport on Rome's Tyrrhenian coast benefits from direct Mediterranean sea breezes that keep temperatures 3-5°C cooler than central Rome in summer. Morning sea fog is common in autumn, and scirocco winds from North Africa arrive laden with Saharan dust that significantly raises temperatures." },
-    ],
+      ],
     },
 
   {
@@ -718,9 +677,7 @@ export const CITIES: City[] = [
         { name: 'Pankow', slug: 'pankow', lat: 52.5700, lon: 13.4100, group: 'North', description: "Pankow's suburban character with detached houses, allotment gardens, and the Panke river valley gives it a noticeably cooler summer climate than inner-city districts just to its south. The lower building density allows cold air to pool in the Panke valley on clear winter nights, creating frequent frost hollows and localized fog that the denser city center avoids." },
         { name: 'Dahlem', slug: 'dahlem', lat: 52.4570, lon: 13.2880, group: 'Southwest', description: "Dahlem's villa-lined streets, generous garden plots, and proximity to the Grunewald forest and Botanischer Garten create Berlin's most consistently cool residential microclimate. The neighborhood hosts one of Germany's oldest weather stations, which has documented that Dahlem averages 2–3°C cooler than Mitte in summer and records significantly more frost days in winter." },
         { name: 'Lichtenberg', slug: 'lichtenberg', lat: 52.5145, lon: 13.5000, group: 'East', description: "Lichtenberg's extensive GDR-era Plattenbau estates with wide spacing between tower blocks allow better airflow than Berlin's dense 19th-century neighborhoods, but the vast concrete surfaces create significant radiative heat. The Tierpark Berlin and surrounding green spaces in the south provide localized cooling, while the flat open rail yards channel easterly winds directly through the district in winter." },
-      
-      { name: 'Berlin Brandenburg Airport', slug: 'ber-airport', lat: 52.3667, lon: 13.5033, group: 'South', description: "Berlin Brandenburg Airport sits on the flat sandy Brandenburg plateau southeast of the city where continental weather patterns arrive unfiltered. The exposed plateau position amplifies the continental temperature range — harsh wind chills in winter and afternoon thunderstorm development in summer." },
-    ],
+      ],
     },
 
   {
@@ -748,9 +705,7 @@ export const CITIES: City[] = [
         { name: 'Hortaleza', slug: 'hortaleza', lat: 41.4685, lon: -3.6399, group: 'Northeast', description: "Hortaleza's position on the open northeastern plateau exposes it to unobstructed continental winds and wider diurnal temperature ranges than the sheltered city center. Lower building density and proximity to the Valdebebas park and airport open spaces allow more effective radiative cooling at night, making frost significantly more common here than in central Madrid." },
         { name: 'Fuencarral-El Pardo', slug: 'fuencarral-el-pardo', lat: 41.4925, lon: -3.7340, group: 'Far North', description: "Fuencarral-El Pardo encompasses the vast Monte de El Pardo forest, a 16,000-hectare Mediterranean woodland that acts as a massive regional climate buffer and is the primary source of cool air drainage into northern Madrid on summer evenings. The district's higher elevation and extensive tree cover make it 3–5°C cooler than the city center in summer, while winter mornings frequently see ground frost and mist in the Manzanares valley floor." },
         { name: 'San Blas-Canillejas', slug: 'san-blas-canillejas', lat: 41.4317, lon: -3.6194, group: 'East', description: "San Blas-Canillejas occupies the eastern plateau fringe where Madrid transitions to open steppe, exposing the district to strong unimpeded easterly winds and extreme continentality. The proximity to Barajas airport's vast paved surfaces contributes to localized heat effects, while the flat open terrain allows rapid radiative cooling that produces some of the metropolitan area's sharpest day-night temperature swings." },
-      
-      { name: 'Barajas Airport', slug: 'barajas-airport', lat: 40.4936, lon: -3.5676, group: 'Northeast', description: "Madrid-Barajas sits on the open Meseta plateau northeast of the city at 615m elevation, exposed to northwest winds that bring cold Arctic air in winter. Summer heat at Barajas is among Spain's most severe, with tarmac temperatures exceeding 55°C and the flat terrain offering no shelter from any direction." },
-    ],
+      ],
     },
 
   {
