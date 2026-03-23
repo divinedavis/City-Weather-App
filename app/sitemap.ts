@@ -31,6 +31,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }))
 
+
+  const bestTimePages: MetadataRoute.Sitemap = CITIES.map((c) => ({
+    url: `${base}/${c.slug}/best-time-to-visit`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.75,
+  }))
+
   const monthlyPages: MetadataRoute.Sitemap = CITIES.flatMap((c) =>
     MONTHS.map((month) => ({
       url: `${base}/${c.slug}/weather/${month}`,
@@ -79,6 +87,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...cityPages,
     ...districtPages,
     ...guidePages,
+    ...bestTimePages,
     ...monthlyPages,
     ...districtMonthlyPages,
     ...comparePairs,

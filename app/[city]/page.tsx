@@ -15,14 +15,21 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
   const { city: slug } = await params
   const city = getCity(slug)
   if (!city) return {}
+  const url = `https://cityweather.app/${city.slug}`
   return {
     title: `${city.name} Weather by Neighborhood — Local Weather Today`,
     description: `Hyperlocal weather for every neighborhood in ${city.name}, ${city.country}. Current conditions, temperature right now, and 5-day forecasts updated every 10 minutes.`,
-    alternates: { canonical: `https://cityweather.app/${city.slug}` },
+    alternates: {
+      canonical: url,
+      languages: {
+        'en': url,
+        'x-default': url,
+      },
+    },
     openGraph: {
       title: `${city.name} Neighborhood Weather Today | City Weather`,
       description: `Real-time hyperlocal weather for every neighborhood in ${city.name}. Updated every 10 minutes.`,
-      url: `https://cityweather.app/${city.slug}`,
+      url,
     },
     other: {
       'geo.placename': `${city.name}, ${city.country}`,

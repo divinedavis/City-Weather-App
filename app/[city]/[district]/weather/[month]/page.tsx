@@ -5,6 +5,8 @@ import { getWeather, capitalize } from '@/lib/weather'
 import { Temp } from '@/components/Temp'
 import type { Metadata } from 'next'
 
+export const dynamic = "force-dynamic"
+
 export const revalidate = 3600
 
 const MONTHS = [
@@ -61,17 +63,6 @@ const CITY_MONTH_DATA: Record<string, Record<string, {
   },
 }
 
-export async function generateStaticParams() {
-  return CITIES.flatMap((city) =>
-    city.districts.flatMap((district) =>
-      MONTHS.map((month) => ({
-        city: city.slug,
-        district: district.slug,
-        month,
-      }))
-    )
-  )
-}
 
 export async function generateMetadata({
   params,
