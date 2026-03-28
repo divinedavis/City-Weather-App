@@ -10,13 +10,9 @@ const MONTHS = [
   'july','august','september','october','november','december'
 ]
 
-export async function generateStaticParams() {
-  return CITIES.flatMap((c) =>
-    c.districts.flatMap((d) =>
-      MONTHS.map((month) => ({ city: c.slug, district: d.slug, month }))
-    )
-  )
-}
+export const dynamicParams = true
+
+export const dynamicParams = true
 
 export async function generateMetadata({
   params,

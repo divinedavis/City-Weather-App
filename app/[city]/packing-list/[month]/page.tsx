@@ -83,9 +83,9 @@ function getPackingList(avgHighF: number | null, avgLowF: number | null, cityNam
   return items
 }
 
-export async function generateStaticParams() {
-  return CITIES.flatMap((c) => MONTHS.map((month) => ({ city: c.slug, month })))
-}
+export const dynamicParams = true
+
+export const dynamicParams = true
 
 export async function generateMetadata({
   params,

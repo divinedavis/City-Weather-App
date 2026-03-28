@@ -161,3 +161,67 @@ export function windDirection(deg: number): string {
 export function capitalize(str: string): string {
   return str.replace(/\b\w/g, (c: string) => c.toUpperCase())
 }
+
+// --- Golden Hour / Sun calculation ---
+// Solar calculations based on NOAA algorithm
+function toJulianDate(date: Date): number {
+  return date.getTime() / 86400000 + 2440587.5
+}
+
+function solarNoon(jd: number, lon: number): number {
+  const n = Math.round(jd - 2451545.0 - 0.0009 - lon / 360)
+  const jStar = 2451545.0 + 0.0009 + lon / 360 + n
+  const M = (357.5291 + 0.98560028 * (jStar - 2451545)) % 360
+  const Mrad = M * Math.PI / 180
+  const C = 1.9148 * Math.sin(Mrad) + 0.02 * Math.sin(2 * Mrad) + 0.0003 * Math.sin(3 * Mrad)
+  const lambda = (M + C + 180 + 102.9372) % 360
+  const jTransit = jStar + 0.0053 * Math.sin(Mrad) - 0.0069 * Math.sin(2 * lambda * Math.PI / 180)
+  return jTransit
+}
+
+function sunTimes(lat: number, lon: number, date: Date): { sunrise: Date; sunset: Date } | null {
+  const jd = toJulianDate(date)
+  const n = Math.round(jd - 2451545.0 - 0.0009 - lon / 360)
+  const jStar = 2451545.0 + 0.0009 + lon / 360 + n
+  const M = (357.5291 + 0.98560028 * (jStar - 2451545)) % 360
+  const Mrad = M * Math.PI / 180
+  const C = 1.9148 * Math.sin(Mrad) + 0.02 * Math.sin(2 * Mrad) + 0.0003 * Math.sin(3 * Mrad)
+  const lambda = (M + C + 180 + 102.9372) % 360
+  const lambdaRad = lambda * Math.PI / 180
+  const sinDec = Math.sin(lambdaRad) * Math.sin(23.4393 * Math.PI / 180)
+  const cosDec = Math.cos(Math.asin(sinDec))
+  const latRad = lat * Math.PI / 180
+  const cosOmega = (Math.sin(-0.833 * Math.PI / 180) - Math.sin(latRad) * sinDec) / (Math.cos(latRad) * cosDec)
+  if (cosOmega < -1 || cosOmega > 1) return null // no sunrise/sunset (polar)
+  const omega = Math.acos(cosOmega) * 180 / Math.PI
+  const jTransit = jStar + 0.0053 * Math.sin(Mrad) - 0.0069 * Math.sin(2 * lambdaRad)
+  const jRise = jTransit - omega / 360
+  const jSet = jTransit + omega / 360
+  const sunrise = new Date((jRise - 2440587.5) * 86400000)
+  const sunset = new Date((jSet - 2440587.5) * 86400000)
+  return { sunrise, sunset }
+}
+
+export type GoldenHourData = {
+  morning: { start: string; end: string }
+  evening: { start: string; end: string }
+  sunrise: string
+  sunset: string
+}
+
+export function getGoldenHour(lat: number, lon: number, timezone: string): GoldenHourData | null {
+  const now = new Date()
+  const times = sunTimes(lat, lon, now)
+  if (!times) return null
+  const fmt = (d: Date) => d.toLocaleTimeString('en-US', { timeZone: timezone, hour: 'numeric', minute: '2-digit' })
+  const morningStart = new Date(times.sunrise.getTime() - 10 * 60000)
+  const morningEnd = new Date(times.sunrise.getTime() + 50 * 60000)
+  const eveningStart = new Date(times.sunset.getTime() - 50 * 60000)
+  const eveningEnd = new Date(times.sunset.getTime() + 10 * 60000)
+  return {
+    morning: { start: fmt(morningStart), end: fmt(morningEnd) },
+    evening: { start: fmt(eveningStart), end: fmt(eveningEnd) },
+    sunrise: fmt(times.sunrise),
+    sunset: fmt(times.sunset),
+  }
+}

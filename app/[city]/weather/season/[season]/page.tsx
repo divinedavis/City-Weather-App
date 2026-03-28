@@ -77,10 +77,9 @@ const MONTH_TEMPS: Record<string, Record<string, { avgHighF: number; avgLowF: nu
   },
 }
 
-export async function generateStaticParams() {
-  const seasons = Object.keys(SEASONS)
-  return CITIES.flatMap((c) => seasons.map((season) => ({ city: c.slug, season })))
-}
+export const dynamicParams = true
+
+export const dynamicParams = true
 
 export async function generateMetadata({
   params,

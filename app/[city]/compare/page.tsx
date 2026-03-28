@@ -7,9 +7,7 @@ export const revalidate = 86400
 
 const POPULAR_SLUGS = ['nyc','london','tokyo','paris','dubai','sydney','los-angeles','chicago','miami','barcelona','rome','amsterdam','singapore','bangkok','istanbul']
 
-export async function generateStaticParams() {
-  return CITIES.map((c) => ({ city: c.slug }))
-}
+export const dynamicParams = true
 
 export async function generateMetadata({
   params,

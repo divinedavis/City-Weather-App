@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { CITIES, getCity, getDistrict } from '@/lib/cities'
-import { getWeather, getForecast, windDirection, capitalize } from '@/lib/weather'
+import { getWeather, getForecast, getGoldenHour, windDirection, capitalize } from '@/lib/weather'
 import { Temp, WindSpeed } from '@/components/Temp'
 import type { Metadata } from 'next'
 
@@ -24,7 +24,7 @@ export async function generateMetadata({
   if (!city || !district) return {}
   return {
     title: `${district.name} Weather Today | ${city.name} Neighborhood Weather`,
-    description: `${district.name} weather right now: current temperature, conditions, and 5-day forecast for ${district.name} in ${city.name}, ${city.country}. Updated every 10 minutes.`,
+    description: `${district.name} weather right now: current temperature, golden hour times, conditions, and 5-day forecast for ${district.name} in ${city.name}, ${city.country}. Updated every 10 minutes.`,
     alternates: { canonical: `https://cityweather.app/${city.slug}/${district.slug}` },
     openGraph: {
       title: `${district.name} Weather Today & Right Now | ${city.name}`,
@@ -53,6 +53,8 @@ export default async function DistrictPage({
     getWeather(district.lat, district.lon),
     getForecast(district.lat, district.lon),
   ])
+
+  const golden = getGoldenHour(district.lat, district.lon, city.timezone)
 
   const updated = new Date().toLocaleString('en-US', {
     timeZone: 'America/New_York',
@@ -185,6 +187,26 @@ export default async function DistrictPage({
                 <p className="text-white text-2xl font-light">{w.clouds}%</p>
               </div>
             </div>
+
+            {golden && (
+              <div className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 backdrop-blur rounded-2xl p-6 mb-6">
+                <h2 className="text-white font-semibold mb-4 flex items-center gap-2">
+                  <span className="text-amber-400">Golden Hour</span> · {district.name} Today
+                </h2>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-amber-300 text-xs uppercase tracking-wide mb-1">Morning Golden Hour</p>
+                    <p className="text-white text-lg font-light">{golden.morning.start} – {golden.morning.end}</p>
+                    <p className="text-blue-300 text-xs mt-1">Sunrise {golden.sunrise}</p>
+                  </div>
+                  <div>
+                    <p className="text-amber-300 text-xs uppercase tracking-wide mb-1">Evening Golden Hour</p>
+                    <p className="text-white text-lg font-light">{golden.evening.start} – {golden.evening.end}</p>
+                    <p className="text-blue-300 text-xs mt-1">Sunset {golden.sunset}</p>
+                  </div>
+                </div>
+              </div>
+            )}
 
             <section className="bg-white/5 rounded-2xl p-6 text-blue-200 text-sm leading-relaxed mb-6">
               <h2 className="text-white font-semibold mb-2">{district.name} Weather Right Now</h2>

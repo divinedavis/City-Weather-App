@@ -19,9 +19,7 @@ const AIRPORTS: Record<string, { name: string; city: string; country: string; la
   sin: { name: 'Singapore Changi Airport', city: 'Singapore', country: 'Singapore', lat: 1.3644, lon: 103.9915, citySlug: 'singapore' },
 }
 
-export async function generateStaticParams() {
-  return Object.keys(AIRPORTS).map((airport) => ({ airport }))
-}
+export const dynamicParams = true
 
 export async function generateMetadata({
   params,

@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { CITIES, getCity } from '@/lib/cities'
-import { getWeather, windDirection, capitalize } from '@/lib/weather'
+import { getWeather, getGoldenHour, windDirection, capitalize } from '@/lib/weather'
 import { Temp, WindSpeed } from '@/components/Temp'
 import type { Metadata } from 'next'
 
@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
   if (!city) return {}
   return {
     title: `${city.name} Weather by Neighborhood — Local Weather Today`,
-    description: `Hyperlocal weather for every neighborhood in ${city.name}, ${city.country}. Current conditions, temperature right now, and 5-day forecasts updated every 10 minutes.`,
+    description: `Hyperlocal weather for every neighborhood in ${city.name}, ${city.country}. Current conditions, golden hour times, temperature right now, and 5-day forecasts updated every 10 minutes.`,
     alternates: { canonical: `https://cityweather.app/${city.slug}` },
     openGraph: {
       title: `${city.name} Neighborhood Weather Today | City Weather`,
@@ -38,6 +38,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
   if (!city) notFound()
 
   const w = await getWeather(city.lat, city.lon)
+  const golden = getGoldenHour(city.lat, city.lon, city.timezone)
   const updated = new Date().toLocaleString('en-US', { timeZone: 'America/New_York', dateStyle: 'full', timeStyle: 'short' })
 
   const groups = city.districts.reduce<Record<string, typeof city.districts>>((acc, d) => {
@@ -156,6 +157,26 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
                 <p className="text-white text-3xl font-light">{w.visibility} mi</p>
               </div>
             </div>
+
+            {golden && (
+              <div className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 backdrop-blur rounded-2xl p-6 mb-8">
+                <h2 className="text-white font-semibold mb-4 flex items-center gap-2">
+                  <span className="text-amber-400">Golden Hour</span> · {city.name} Today
+                </h2>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-amber-300 text-xs uppercase tracking-wide mb-1">Morning Golden Hour</p>
+                    <p className="text-white text-lg font-light">{golden.morning.start} – {golden.morning.end}</p>
+                    <p className="text-blue-300 text-xs mt-1">Sunrise {golden.sunrise}</p>
+                  </div>
+                  <div>
+                    <p className="text-amber-300 text-xs uppercase tracking-wide mb-1">Evening Golden Hour</p>
+                    <p className="text-white text-lg font-light">{golden.evening.start} – {golden.evening.end}</p>
+                    <p className="text-blue-300 text-xs mt-1">Sunset {golden.sunset}</p>
+                  </div>
+                </div>
+              </div>
+            )}
           </>
         )}
 
