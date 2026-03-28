@@ -10,18 +10,25 @@ import json
 import shutil
 import subprocess
 import logging
-from datetime import datetime
+import re
+import urllib.request
+import urllib.error
+from datetime import datetime, timezone
+from email.utils import format_datetime
 from pathlib import Path
 
 import anthropic
 
 # ── Config ────────────────────────────────────────────────────────────────────
-APP_DIR       = Path("/var/www/nycweather")
-CITIES_TS     = APP_DIR / "lib" / "cities.ts"
-QUEUE_FILE    = APP_DIR / "city_queue.json"
-LOG_FILE      = APP_DIR / "auto_add_cities.log"
-BATCH_SIZE    = 30
-MODEL         = "claude-opus-4-6"
+APP_DIR         = Path("/var/www/nycweather")
+CITIES_TS       = APP_DIR / "lib" / "cities.ts"
+QUEUE_FILE      = APP_DIR / "city_queue.json"
+LOG_FILE        = APP_DIR / "auto_add_cities.log"
+FEED_XML        = APP_DIR / "public" / "feed.xml"
+BATCH_SIZE      = 30
+MODEL           = "claude-opus-4-6"
+INDEXNOW_KEY    = "9b9a8cd21bbac20f94941d30e60ba937"
+BASE_URL        = "https://cityweather.app"
 
 # ── Logging ───────────────────────────────────────────────────────────────────
 logging.basicConfig(
@@ -176,7 +183,7 @@ def git_push(city_names: list[str]) -> bool:
     msg = f"feat: add {len(city_names)} cities — {names}"
 
     cmds = [
-        ["git", "add", "lib/cities.ts"],
+        ["git", "add", "lib/cities.ts", "public/feed.xml"],
         ["git", "commit", "-m", msg],
         ["git", "push"],
     ]
@@ -187,6 +194,71 @@ def git_push(city_names: list[str]) -> bool:
             return False
     log.info(f"Pushed: {msg}")
     return True
+
+
+# ── IndexNow ping ─────────────────────────────────────────────────────────────
+def ping_indexnow(batch: list[dict]) -> None:
+    """Notify IndexNow-compatible engines (Bing, Yandex, etc.) of new pages."""
+    urls = []
+    for city_info in batch:
+        slug = city_info["slug"]
+        urls.append(f"{BASE_URL}/{slug}")
+        # District slugs aren't available here — city page is enough to trigger crawl
+    if not urls:
+        return
+    payload = json.dumps({
+        "host": "cityweather.app",
+        "key": INDEXNOW_KEY,
+        "keyLocation": f"{BASE_URL}/{INDEXNOW_KEY}.txt",
+        "urlList": urls,
+    }).encode("utf-8")
+    req = urllib.request.Request(
+        "https://api.indexnow.org/indexnow",
+        data=payload,
+        headers={"Content-Type": "application/json; charset=utf-8"},
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            log.info(f"IndexNow ping: HTTP {resp.status} for {len(urls)} URLs")
+    except urllib.error.HTTPError as e:
+        log.warning(f"IndexNow ping failed: HTTP {e.code} — {e.reason}")
+    except Exception as e:
+        log.warning(f"IndexNow ping error: {e}")
+
+
+# ── feed.xml update ────────────────────────────────────────────────────────────
+def update_feed_xml(batch: list[dict]) -> None:
+    """Append new city entries to feed.xml and refresh lastBuildDate."""
+    if not FEED_XML.exists():
+        log.warning("feed.xml not found — skipping RSS update")
+        return
+    content = FEED_XML.read_text(encoding="utf-8")
+    now_rfc = format_datetime(datetime.now(timezone.utc))
+    # Update lastBuildDate
+    content = re.sub(
+        r"<lastBuildDate>[^<]*</lastBuildDate>",
+        f"<lastBuildDate>{now_rfc}</lastBuildDate>",
+        content,
+    )
+    # Build new <item> blocks for each city
+    new_items = ""
+    for city_info in batch:
+        name = city_info["name"]
+        slug = city_info["slug"]
+        country = city_info.get("country", "")
+        new_items += f"""    <item>
+      <title>{name} Hyperlocal Weather by Neighborhood</title>
+      <link>{BASE_URL}/{slug}</link>
+      <description>Hyperlocal weather forecasts for {name}, {country} — real-time conditions for every neighborhood, updated every 10 minutes.</description>
+      <pubDate>{now_rfc}</pubDate>
+      <guid>{BASE_URL}/{slug}</guid>
+    </item>
+"""
+    # Insert before closing </channel>
+    content = content.replace("  </channel>", new_items + "  </channel>")
+    FEED_XML.write_text(content, encoding="utf-8")
+    log.info(f"feed.xml updated with {len(batch)} new cities")
 
 
 # ── Main ───────────────────────────────────────────────────────────────────────
@@ -264,6 +336,12 @@ def main():
 
     # Restart PM2
     restart_pm2()
+
+    # Ping IndexNow so Bing/Yandex/etc. crawl new pages immediately
+    ping_indexnow(batch)
+
+    # Update RSS feed with new cities
+    update_feed_xml(batch)
 
     # Push to GitHub
     git_push(added_cities)
