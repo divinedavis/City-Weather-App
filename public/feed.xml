@@ -6,7 +6,7 @@
     <description>Hyperlocal weather forecasts for cities and neighborhoods worldwide. Real-time weather data for NYC, London, Tokyo, Paris and 60+ cities.</description>
     <language>en-us</language>
     <atom:link href="https://cityweather.app/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Wed, 18 Mar 2026 17:21:15 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 28 Mar 2026 16:48:23 +0000</lastBuildDate>
     <item>
       <title>New York City Hyperlocal Weather - Neighborhood by Neighborhood</title>
       <link>https://cityweather.app/nyc</link>
@@ -62,6 +62,83 @@
       <description>Hyperlocal weather forecasts for Sydney suburbs and neighborhoods.</description>
       <pubDate>Wed, 18 Mar 2026 17:21:15 -0400</pubDate>
       <guid>https://cityweather.app/sydney</guid>
+    </item>
+    <item>
+      <title>London Weather Guide — Best Time to Visit</title>
+      <link>https://cityweather.app/guides/london</link>
+      <description>Complete London weather guide: best months to visit, seasonal temperatures, what to pack, and neighborhood climate tips.</description>
+      <pubDate>Sat, 28 Mar 2026 16:48:23 +0000</pubDate>
+      <guid>https://cityweather.app/guides/london</guid>
+    </item>
+    <item>
+      <title>Tokyo Weather Guide — Best Time to Visit</title>
+      <link>https://cityweather.app/guides/tokyo</link>
+      <description>Complete Tokyo weather guide: cherry blossom season, rainy season, typhoon season and the best months to visit Japan.</description>
+      <pubDate>Sat, 28 Mar 2026 16:48:23 +0000</pubDate>
+      <guid>https://cityweather.app/guides/tokyo</guid>
+    </item>
+    <item>
+      <title>Paris Weather Guide — Best Time to Visit</title>
+      <link>https://cityweather.app/guides/paris</link>
+      <description>Paris weather by month: spring in Paris, summer heat waves, fall foliage and winter markets guide.</description>
+      <pubDate>Sat, 28 Mar 2026 16:48:23 +0000</pubDate>
+      <guid>https://cityweather.app/guides/paris</guid>
+    </item>
+    <item>
+      <title>Dubai Weather Guide — Best Time to Visit</title>
+      <link>https://cityweather.app/guides/dubai</link>
+      <description>Dubai weather guide: when to avoid the extreme summer heat and the best cool-season months to visit.</description>
+      <pubDate>Sat, 28 Mar 2026 16:48:23 +0000</pubDate>
+      <guid>https://cityweather.app/guides/dubai</guid>
+    </item>
+    <item>
+      <title>Sydney Weather Guide — Best Time to Visit</title>
+      <link>https://cityweather.app/guides/sydney</link>
+      <description>Sydney weather guide: the best months to visit Australia — from beach season to mild autumn and winter.</description>
+      <pubDate>Sat, 28 Mar 2026 16:48:23 +0000</pubDate>
+      <guid>https://cityweather.app/guides/sydney</guid>
+    </item>
+    <item>
+      <title>NYC Weather in March — Spring Forecast</title>
+      <link>https://cityweather.app/nyc/weather/march</link>
+      <description>New York City weather in March: temperatures, rainfall, what to pack for early spring in NYC.</description>
+      <pubDate>Sat, 28 Mar 2026 16:48:23 +0000</pubDate>
+      <guid>https://cityweather.app/nyc/weather/march</guid>
+    </item>
+    <item>
+      <title>London Weather in March — Spring Conditions</title>
+      <link>https://cityweather.app/london/weather/march</link>
+      <description>London weather in March: temperatures, rainfall, and what to expect in early spring in the UK capital.</description>
+      <pubDate>Sat, 28 Mar 2026 16:48:23 +0000</pubDate>
+      <guid>https://cityweather.app/london/weather/march</guid>
+    </item>
+    <item>
+      <title>Tokyo Weather in March — Cherry Blossom Season</title>
+      <link>https://cityweather.app/tokyo/weather/march</link>
+      <description>Tokyo weather in March: cherry blossom season begins, temperatures, and travel tips for spring in Japan.</description>
+      <pubDate>Sat, 28 Mar 2026 16:48:23 +0000</pubDate>
+      <guid>https://cityweather.app/tokyo/weather/march</guid>
+    </item>
+    <item>
+      <title>Paris Weather in March — Early Spring</title>
+      <link>https://cityweather.app/paris/weather/march</link>
+      <description>Paris weather in March: spring arrives in the French capital — temperatures, what to wear, and outdoor tips.</description>
+      <pubDate>Sat, 28 Mar 2026 16:48:23 +0000</pubDate>
+      <guid>https://cityweather.app/paris/weather/march</guid>
+    </item>
+    <item>
+      <title>Dubai Weather in March — Ideal Season</title>
+      <link>https://cityweather.app/dubai/weather/march</link>
+      <description>Dubai weather in March: one of the best months to visit with warm but not extreme temperatures.</description>
+      <pubDate>Sat, 28 Mar 2026 16:48:23 +0000</pubDate>
+      <guid>https://cityweather.app/dubai/weather/march</guid>
+    </item>
+    <item>
+      <title>Sydney Weather in March — Late Summer</title>
+      <link>https://cityweather.app/sydney/weather/march</link>
+      <description>Sydney weather in March: late summer conditions in Australia — temperatures, humidity, and beach tips.</description>
+      <pubDate>Sat, 28 Mar 2026 16:48:23 +0000</pubDate>
+      <guid>https://cityweather.app/sydney/weather/march</guid>
     </item>
   </channel>
 </rss>

@@ -199,11 +199,28 @@ def git_push(city_names: list[str]) -> bool:
 # ── IndexNow ping ─────────────────────────────────────────────────────────────
 def ping_indexnow(batch: list[dict]) -> None:
     """Notify IndexNow-compatible engines (Bing, Yandex, etc.) of new pages."""
+    MONTHS = ["january","february","march","april","may","june",
+              "july","august","september","october","november","december"]
+    import datetime
+    current_month = datetime.datetime.now().strftime("%B").lower()
     urls = []
     for city_info in batch:
         slug = city_info["slug"]
+        # City page
         urls.append(f"{BASE_URL}/{slug}")
-        # District slugs aren't available here — city page is enough to trigger crawl
+        # Guide page
+        urls.append(f"{BASE_URL}/guides/{slug}")
+        # Monthly pages for current month
+        urls.append(f"{BASE_URL}/{slug}/weather/{current_month}")
+        # District pages if available
+        for district in city_info.get("districts", []):
+            d_slug = district.get("slug", "")
+            if d_slug:
+                urls.append(f"{BASE_URL}/{slug}/{d_slug}")
+                urls.append(f"{BASE_URL}/{slug}/{d_slug}/weather/{current_month}")
+        # Limit to 100 URLs per ping (IndexNow limit)
+        if len(urls) >= 100:
+            break
     if not urls:
         return
     payload = json.dumps({

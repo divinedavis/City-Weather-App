@@ -3,6 +3,7 @@ import { CITIES } from '@/lib/cities'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
+  robots: { index: false, follow: false },
   title: 'Weather Widget Embed — Free Neighborhood Weather for Your Website',
   description: 'Embed a free hyperlocal weather widget on your blog, website, or app. Shows real-time temperature and conditions for any neighborhood in our database.',
   alternates: { canonical: 'https://cityweather.app/embed' },

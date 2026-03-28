@@ -171,10 +171,23 @@ export default async function MonthlyWeatherPage({
     ],
   }
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: `${city.name} Weather in ${monthName} — Temperature, Rain & What to Expect`,
+    description: `What is the weather like in ${city.name} in ${monthName}? Average temperatures, rainfall, sunshine hours, and what to pack.`,
+    url: `https://cityweather.app/${city.slug}/weather/${monthSlug}`,
+    datePublished: '2026-01-01T00:00:00Z',
+    dateModified: '2026-01-01T00:00:00Z',
+    about: { '@type': 'City', name: city.name },
+    author: { '@type': 'Organization', name: 'City Weather', url: 'https://cityweather.app' },
+  }
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
 
       <main className="max-w-3xl mx-auto px-4 py-12">
         <nav className="flex gap-2 text-sm text-blue-300 mb-8 flex-wrap">

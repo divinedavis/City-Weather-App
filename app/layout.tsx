@@ -49,6 +49,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://openweathermap.org" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://ip-api.com" />
+        <link rel="alternate" hrefLang="en" href="https://cityweather.app" />
+        <link rel="alternate" type="application/rss+xml" title="CityWeather" href="https://cityweather.app/feed.xml" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-Y24MB6W7Q8"
           strategy="afterInteractive"

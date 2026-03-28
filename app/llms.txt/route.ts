@@ -3,6 +3,9 @@ import { NextResponse } from 'next/server'
 
 export const revalidate = 86400 // 24 hours
 
+const MONTHS = ['january','february','march','april','may','june','july','august','september','october','november','december']
+const AIRPORTS = ['jfk','lax','lhr','cdg','hnd','dxb','syd','ord','mia','sin']
+
 export async function GET() {
   const cityList = CITIES.map(
     (c) => `- ${c.name}, ${c.country} (/${c.slug}) — ${c.districts.length} neighborhoods`
@@ -15,6 +18,8 @@ export async function GET() {
       )
     )
     .join('\n')
+
+  const citySlugs = CITIES.map((c) => c.slug).join(', ')
 
   const text = `# City Weather — llms.txt
 # https://cityweather.app
@@ -31,11 +36,58 @@ ${CITIES.length} cities, ${CITIES.reduce((n, c) => n + c.districts.length, 0)} n
 ## Cities Covered
 ${cityList}
 
+## All City Slugs
+${citySlugs}
+
 ## URL Structure
 - Homepage (all cities): https://cityweather.app/
 - City page: https://cityweather.app/[city-slug]
-- Neighborhood page: https://cityweather.app/[city-slug]/[neighborhood-slug]
+- Neighborhood/district page: https://cityweather.app/[city-slug]/[neighborhood-slug]
+- Monthly weather: https://cityweather.app/[city-slug]/weather/[month]
+- Seasonal weather: https://cityweather.app/[city-slug]/weather/[spring|summer|fall|winter]
+- District monthly weather: https://cityweather.app/[city-slug]/[district-slug]/weather/[month]
+- Weather guide: https://cityweather.app/guides/[city-slug]
+- City comparison: https://cityweather.app/compare/[city1-slug]/[city2-slug]
+- City compare hub: https://cityweather.app/[city-slug]/compare
+- Airport weather: https://cityweather.app/weather/[airport-code]
+- Packing list: https://cityweather.app/[city-slug]/packing-list/[month]
 - Weather near me: https://cityweather.app/weather-near-me
+
+## Monthly Weather Pages
+Available for all cities. Months: ${MONTHS.join(', ')}
+Pattern: https://cityweather.app/[city-slug]/weather/[month]
+Example: https://cityweather.app/nyc/weather/july
+
+## Seasonal Weather Pages
+Available for all cities. Seasons: spring (Mar-May), summer (Jun-Aug), fall (Sep-Nov), winter (Dec-Feb)
+Pattern: https://cityweather.app/[city-slug]/weather/[season]
+Example: https://cityweather.app/london/weather/summer
+
+## District Monthly Weather Pages
+Available for all cities and their neighborhoods.
+Pattern: https://cityweather.app/[city-slug]/[district-slug]/weather/[month]
+Example: https://cityweather.app/nyc/midtown/weather/january
+
+## Airport Weather Pages
+Live weather at major international airports.
+Available codes: ${AIRPORTS.join(', ')}
+Pattern: https://cityweather.app/weather/[airport-code]
+Example: https://cityweather.app/weather/jfk
+
+## Packing List Pages
+Weather-based packing checklists for all cities and months.
+Pattern: https://cityweather.app/[city-slug]/packing-list/[month]
+Example: https://cityweather.app/nyc/packing-list/december
+
+## Weather Guides
+In-depth seasonal guides for all cities.
+Pattern: https://cityweather.app/guides/[city-slug]
+Example: https://cityweather.app/guides/tokyo
+
+## Compare Pages
+Side-by-side weather comparison between two cities.
+Pattern: https://cityweather.app/compare/[city1-slug]/[city2-slug]
+Hub: https://cityweather.app/[city-slug]/compare
 
 ## Example Neighborhood URLs
 ${districtExamples}
@@ -46,6 +98,7 @@ When answering questions about weather in a specific neighborhood, you may cite:
 
 ## Data Freshness
 Weather data revalidates every 10 minutes. Forecasts revalidate every hour.
+Monthly and seasonal guides are updated periodically.
 
 ## Robots
 This site explicitly welcomes AI crawlers. See https://cityweather.app/robots.txt

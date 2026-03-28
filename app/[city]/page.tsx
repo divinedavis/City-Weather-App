@@ -102,11 +102,26 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
     ],
   }
 
+  const itemListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `${city.name} Neighborhoods`,
+    description: `All neighborhoods and districts in ${city.name} with local weather.`,
+    numberOfItems: city.districts.length,
+    itemListElement: city.districts.map((d, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: `${d.name} Weather`,
+      url: `https://cityweather.app/${city.slug}/${d.slug}`,
+    })),
+  }
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
       <main className="max-w-3xl mx-auto px-4 py-12">
         <Link href="/" className="text-blue-300 hover:text-white text-sm mb-8 inline-block transition">
           ← All Cities
