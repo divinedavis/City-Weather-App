@@ -12,7 +12,6 @@ const MONTHS = [
 
 export const dynamicParams = true
 
-export const dynamicParams = true
 
 export async function generateMetadata({
   params,

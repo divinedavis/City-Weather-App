@@ -85,7 +85,6 @@ function getPackingList(avgHighF: number | null, avgLowF: number | null, cityNam
 
 export const dynamicParams = true
 
-export const dynamicParams = true
 
 export async function generateMetadata({
   params,

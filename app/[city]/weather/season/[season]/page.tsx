@@ -79,7 +79,6 @@ const MONTH_TEMPS: Record<string, Record<string, { avgHighF: number; avgLowF: nu
 
 export const dynamicParams = true
 
-export const dynamicParams = true
 
 export async function generateMetadata({
   params,
